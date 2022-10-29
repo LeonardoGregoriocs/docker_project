@@ -13,7 +13,6 @@ RUN apt-get update && \
 
 COPY ./app /code/app
 
-
-ENTRYPOINT ["uvicorn", "app.main:app"]
+ENTRYPOINT ["uvicorn", "fastapi.main:app"]
 
 CMD ["--host=0.0.0.0"]
