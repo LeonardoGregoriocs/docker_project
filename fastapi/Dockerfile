@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.9
 
 WORKDIR /code
 
@@ -11,8 +11,8 @@ RUN apt-get update && \
     pip install fastapi && \
     pip install "uvicorn[standard]"
 
-COPY ./app /code/app
+COPY .fastapi /code/app
 
-ENTRYPOINT ["uvicorn", "fastapi.main:app"]
+ENTRYPOINT ["uvicorn", "main:app"]
 
 CMD ["--host=0.0.0.0"]

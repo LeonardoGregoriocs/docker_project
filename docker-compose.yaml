@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  laravel:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile.prod
+    image: leonardogregoriocs/laravel:prod
+    container_name: laravel
+    networks:
+      - laranet
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    image: leonardogregoriocs/nginx:prod
+    container_name: nginx
+    networks:
+      - laranet
+    ports:
+      - "8080:80"
+
+  fastapi:
+    build:
+      context: ./fastapi
+      dockerfile: Dockerfile
+    image: leonardogregoriocs/fastapi:latest
+    container_name: fastapi
+    networks:
+      - laranet
+    ports:
+      - "5000:8000"
+
+networks:
+  laranet:
+    driver: bridge
